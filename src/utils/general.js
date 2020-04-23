@@ -22,6 +22,17 @@ Util.resultWarning400 = (res, error) => {
   });
 }
 
+Util.resultSuccess = (res, data) => {
+  return res.status(200).json({
+      success: true,
+      result: {
+          message: "Operação realizada com sucesso.",
+          variant: 'success'
+      },
+      data
+  });
+}
+
 Util.isEmpty = (value) => {
     value === undefined ||
     value === null ||
