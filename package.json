@@ -1,26 +1,19 @@
 {
   "name": "goku-server",
   "version": "1.0.0",
-  "engines": {
-    "node": "12.1.0"
-  },
-  "description": "Goku Server",
   "main": "index.js",
   "scripts": {
+    "client-install": "npm install --prefix ../client",
     "start": "node index.js",
-    "server": "nodemon index.js --ignore __tests__"
+    "server": "nodemon index.js --ignore __tests__",
+    "client": "npm start --prefix ../client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "keywords": [],
-  "author": "Alan Teixeira <alanfrnk@gmail.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/goku-alan/goku-server/issues"
-  },
-  "homepage": "https://github.com/goku-alan/goku-server#readme",
-  "dependencies": {
-    "express": "^4.17.1"
-  },
+  "repository": "https://github.com/alanfrnk/goku-server.git",
+  "author": "Ala Teixeira <alanfrnk@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
+    "concurrently": "^4.1.0",
     "eslint": "^5.16.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.17.2",
@@ -29,5 +22,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "nodemon": "^1.18.11"
   },
-  "repository": "https://github.com/alanfrnk/goku-server.git"
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
