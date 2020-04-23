@@ -28,7 +28,7 @@ class ValidateUser {
             error,
             isValid: isEmpty(error)
         }
-    },
+    }
 
     login(body) {
       let error = {}

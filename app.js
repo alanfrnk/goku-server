@@ -1,10 +1,20 @@
 const express = require('express');
 const mongoose     = require('mongoose');
+const bodyParser   = require('body-parser');
+const passport     = require('passport');
+const cors         = require('cors');
+const morgan       = require('morgan');
+const helmet       = require('helmet');
 
 /** Models */
 require('./src/models');
 
+// Middleware para verificação do token
+const VerifyToken = require('./src/config/verifyToken'); 
+
 require('dotenv').config({});
+
+global.XMLHttpRequest = require('xhr2');
 
 let MONGO_URI = process.env.MONGO_URI;
 
@@ -22,6 +32,25 @@ mongoose.connect(MONGO_URI, {
 
 /** Configs */
 const app = express()
+
+/** Route Files */
+const userRoutes = require('./src/routes/user')
+const addressRoutes = require('./src/routes/address')
+
+/** Middlewares */
+app.use(cors()) // O CORS é um pacote node.js para fornecer um middleware do Connect / Express que pode ser usado para ativar o CORS com várias opções
+app.use(helmet()) // Ajuda a proteger aplicativos Express, configurando vários cabeçalhos HTTP
+app.use(morgan('dev')) // Middleware do log de solicitações HTTP para node.js
+app.use(bodyParser.urlencoded({ extended: true, limit: '5mb' }))
+app.use(bodyParser.json({ limit: '5mb' }))
+app.use(passport.initialize()) // Middleware de autenticação para node.js
+
+/** Passport config */
+require('./src/config/passport')(passport)
+
+/** Routas */
+app.use('/api/user', userRoutes);
+app.use('/api/address', VerifyToken, addressRoutes); // Essa rota necessita de token
 
 // Conecta com o banco de dados MongoDB
 mongoose.connection

@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 /** Load input validation */
 const validateUser = require('../validation/user');
-const util = require('./util')
+const util = require('../utils/general')
 
 /** Models */
 const User = require('../models/User');
