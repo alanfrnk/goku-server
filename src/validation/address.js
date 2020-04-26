@@ -28,8 +28,8 @@ class ValidateAddress {
               error = util.formatError('Cidade deve ter entre 3 e 60 caracteres!');
             }
 
-            if (!Validator.isLength(data.state, { min: 3, max: 20 })) {
-              error = util.formatError('Estado deve ter entre 3 e 20 caracteres!');
+            if (!Validator.isLength(data.state, { min: 2, max: 2 })) {
+              error = util.formatError('Estado deve ter 2 caracteres!');
             }
 
             if (!Validator.isLength(data.country, { min: 3, max: 60 })) {
