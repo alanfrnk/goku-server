@@ -7,7 +7,7 @@ class ValidateUser {
         let error = {}
         let data = {}
     
-        if (!isEmpty(body)) {
+        if (!util.isEmpty(body)) {
             
             data.userName = !util.isEmpty(body.userName) ? body.userName : ''
             data.password = !util.isEmpty(body.password) ? body.password : ''
@@ -26,7 +26,7 @@ class ValidateUser {
     
         return {
             error,
-            isValid: isEmpty(error)
+            isValid: util.isEmpty(error)
         }
     }
 
@@ -34,7 +34,7 @@ class ValidateUser {
       let error = {}
       let data = {}
   
-      if (!isEmpty(body)) {
+      if (!util.isEmpty(body)) {
           if (util.isEmpty(body.userName)) {
               error = util.formatError('Nome não fornecido!');
           }
@@ -52,7 +52,6 @@ class ValidateUser {
           isValid: util.isEmpty(error)
       }
   }
-
 }
 
 module.exports = new ValidateUser();
