@@ -7,14 +7,14 @@ class ValidateAddress {
         let error = {}
         let data = {}
     
-        if (!isEmpty(body)) {
+        if (!util.isEmpty(body)) {
             
-            data.zipCode  = !isEmpty(body.zipCode) ? body.zipCode : ''
-            data.street   = !isEmpty(body.street) ? body.street : ''
-            data.number   = !isEmpty(body.number) ? body.number : 0
-            data.city     = !isEmpty(body.city) ? body.city : ''
-            data.state    = !isEmpty(body.state) ? body.state : ''
-            data.country  = !isEmpty(body.country) ? body.country : ''
+            data.zipCode  = !util.isEmpty(body.zipCode) ? body.zipCode : ''
+            data.street   = !util.isEmpty(body.street) ? body.street : ''
+            data.number   = !util.isEmpty(body.number) ? body.number : 0
+            data.city     = !util.isEmpty(body.city) ? body.city : ''
+            data.state    = !util.isEmpty(body.state) ? body.state : ''
+            data.country  = !util.isEmpty(body.country) ? body.country : ''
     
             if (!Validator.isLength(data.zipCode, { min: 8, max: 8 })) {
                 error = util.formatError('Cep deve ter 8 caracteres!');
@@ -28,8 +28,8 @@ class ValidateAddress {
               error = util.formatError('Cidade deve ter entre 3 e 60 caracteres!');
             }
 
-            if (!Validator.isLength(data.state, { min: 3, max: 20 })) {
-              error = util.formatError('Estado deve ter entre 3 e 20 caracteres!');
+            if (!Validator.isLength(data.state, { min: 2, max: 2 })) {
+              error = util.formatError('Estado deve ter 2 caracteres!');
             }
 
             if (!Validator.isLength(data.country, { min: 3, max: 60 })) {
@@ -41,7 +41,7 @@ class ValidateAddress {
     
         return {
             error,
-            isValid: isEmpty(error)
+            isValid: util.isEmpty(error)
         }
     }
 }

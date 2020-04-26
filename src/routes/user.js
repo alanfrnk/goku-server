@@ -14,4 +14,21 @@ router.post('/register', UserService.register);
 // @access Public
 router.post('/login', UserService.login);
 
+// @route  PUT api/user/
+// @desc   Update user
+// @params userId
+// @access Authenticated
+router.put('/:userId', UserService.update);
+
+// @route  GET api/user/
+// @desc   Get users
+// @access Authenticated
+router.get('/', UserService.getAll);
+
+// @route  DELETE api/user/
+// @desc   Remove user
+// @params userId
+// @access Authenticated
+router.delete('/:userId', UserService.remove);
+
 module.exports = router
